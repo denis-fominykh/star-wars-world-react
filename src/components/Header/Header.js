@@ -7,7 +7,7 @@ export const Header = () => {
     <div className="header d-flex">
       <h3>
         <a href="/#">
-          Star DB
+          The Star Wars World
         </a>
       </h3>
       <ul className="d-flex">
