@@ -8,18 +8,24 @@ import { PlanetView } from '../PlanetView/PlanetView';
 import { ErrorIndicator } from '../ErrorIndicator/ErrorIndicator';
 
 export class RandomPlanet extends Component {
-  constructor(props) {
-    super(props);
-    this.swapiService = new SwapiService();
-    this.state = {
-      planet: {},
-      loading: true,
-      error: false,
-    };
+  swapiService = new SwapiService();
+
+  state = {
+    planet: {},
+    loading: true,
+    error: false,
+  };
+
+  componentDidMount() {
     this.updatePlanet();
+    this.interval = setInterval(this.updatePlanet, 7000);
   }
 
-  onPlanetLoaded = (planet) => {
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  onPlanetLoaded = planet => {
     this.setState({
       planet,
       loading: false,
@@ -33,8 +39,8 @@ export class RandomPlanet extends Component {
     })
   }
 
-  updatePlanet() {
-    const id = Math.floor(Math.random() * 25) + 2;
+  updatePlanet = () => {
+    const id = Math.floor(Math.random() * 17) + 2;
     this.swapiService
       .getPlanet(id)
       .then(this.onPlanetLoaded)
