@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './App.scss';
 
 import { Header } from './components/Header/Header';
-import { RandomPlanet } from './components/RandomPlanet/RandomPlanet';
+import { RandomPlanetDetails } from './components/RandomPlanetDetails/RandomPlanetDetails';
 import { ItemList } from './components/ItemList/ItemList';
 import { PersonDetails } from './components/PersonDetails/PersonDetails';
 
@@ -22,7 +22,7 @@ export class App extends Component {
     return (
       <div className="container">
         <Header />
-        <RandomPlanet />
+        <RandomPlanetDetails />
         <div className="row mb2">
           <div className="col-md-6">
             <ItemList onItemSelected={this.onPersonSelected}/>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const PlanetView = ({ planet }) => {
+export const RandomPlanetView = ({ planet }) => {
   const {
     id,
     name,

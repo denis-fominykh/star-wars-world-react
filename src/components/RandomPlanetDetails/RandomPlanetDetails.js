@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-import './RandomPlanet.scss';
+import './RandomPlanetDetails.scss';
 
 import { SwapiService } from '../../services/swapiService';
 import { Spinner } from '../Spinner/Spinner';
-import { PlanetView } from '../PlanetView/PlanetView';
+import { RandomPlanetView } from '../RandomPlanetView/RandomPlanetView';
 import { ErrorIndicator } from '../ErrorIndicator/ErrorIndicator';
 
-export class RandomPlanet extends Component {
+export class RandomPlanetDetails extends Component {
   swapiService = new SwapiService();
 
   state = {
@@ -52,7 +52,7 @@ export class RandomPlanet extends Component {
 
     const errorIndicator = error ? <ErrorIndicator /> : null;
     const spinner = loading ? <Spinner /> : null;
-    const content = !(loading || error) ? <PlanetView planet={planet}/> : null;
+    const content = !(loading || error) ? <RandomPlanetView planet={planet}/> : null;
 
     return (
       <div className="random-planet jumbotron rounded">
