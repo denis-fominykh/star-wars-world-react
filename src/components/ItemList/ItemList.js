@@ -9,6 +9,7 @@ export class ItemList extends Component {
 
   state = {
     peopleList: null,
+    error: null,
   };
 
   componentDidMount() {
