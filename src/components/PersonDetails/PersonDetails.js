@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 
 import './PersonDetails.scss';
 import { SwapiService } from '../../services/swapiService';
+import { PersonView } from '../PersonView/PersonView';
+import { Spinner } from '../Spinner/Spinner';
 
 export class PersonDetails extends Component {
   swapiService = new SwapiService();
 
   state = {
     person: null,
+    loaded: true,
     error: null,
   };
 
@@ -17,16 +20,24 @@ export class PersonDetails extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.personId !== prevProps.personId) {
+      this.onToggleSpinner();
       this.updatePerson();
     }
   }
 
   onPersonLoaded = person => {
-    this.setState({ person });
+    this.setState({
+      person,
+      loaded: false,
+    });
   }
 
   onError = error => {
     this.setState({ error });
+  }
+
+  onToggleSpinner = () => {
+    this.setState({ loaded: true });
   }
 
   updatePerson() {
@@ -42,41 +53,17 @@ export class PersonDetails extends Component {
   }
 
   render() {
-    if (!this.state.person) {
-      return <span>Select a person from a list</span>;
-    }
+    const { person, loaded, error } = this.state;
 
-    const {
-      id,
-      name,
-      gender,
-      birthYear,
-      eyeColor,
-    } = this.state.person;
+    const emptyPerson = !person ? <span>Select a person from a list</span> : null;
+    const spinner = (loaded && person) ? <Spinner /> : null;
+    const content = !(loaded || error) ? <PersonView person={person}/> : null;
 
     return (
       <div className="person-details card">
-        <img className="person-image"
-             src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
-             alt="person"
-        />
-        <div className="card-body">
-          <h4>{name}</h4>
-          <ul className="list-group list-group-flush">
-            <li className="list-group-item">
-              <span className="term">Gender:</span>
-              <span>{gender}</span>
-            </li>
-            <li className="list-group-item">
-              <span className="term">Birth Year:</span>
-              <span>{birthYear}</span>
-            </li>
-            <li className="list-group-item">
-              <span className="term">Eye Color:</span>
-              <span>{eyeColor}</span>
-            </li>
-          </ul>
-        </div>
+        {emptyPerson}
+        {spinner}
+        {content}
       </div>
     )
   }
