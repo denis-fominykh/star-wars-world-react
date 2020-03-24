@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export const PersonView = ({ person }) => {
   const { id, name, gender, birthYear, eyeColor } = person;

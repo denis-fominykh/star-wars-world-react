@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 
 import { ItemList } from '../ItemList/ItemList';
-import { PersonDetails } from '../PersonDetails/PersonDetails';
+import { StarshipDetails } from '../StarshipDetails/StarshipDetails';
 import { ErrorIndicator } from '../ErrorIndicator/ErrorIndicator';
 import { SwapiService } from '../../services/swapiService';
 
-export class PersonsPage extends Component {
+export class StarshipsPage extends Component {
   swapiService = new SwapiService();
 
   state = {
-    selectedPerson: null,
+    selectedStarship: null,
     hasError: false,
   };
 
@@ -17,9 +17,9 @@ export class PersonsPage extends Component {
     this.setState({ hasError: true });
   }
 
-  onPersonSelected = (id) => {
+  onStarshipSelected = (id) => {
     this.setState({
-      selectedPerson: id,
+      selectedStarship: id,
     });
   }
 
@@ -31,12 +31,12 @@ export class PersonsPage extends Component {
     return (
       <div className="row mb2">
         <div className="col-md-6">
-          <ItemList onItemSelected={this.onPersonSelected}
-                    getData={this.swapiService.getAllPeople}
+          <ItemList onItemSelected={this.onStarshipSelected}
+                    getData={this.swapiService.getAllStarships}
           />
         </div>
         <div className="col-md-6">
-          <PersonDetails personId={this.state.selectedPerson}/>
+          <StarshipDetails starshipId={this.state.selectedStarship}/>
         </div>
       </div>
     )
