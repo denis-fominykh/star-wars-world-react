@@ -4,33 +4,28 @@ import './App.scss';
 
 import { Header } from './components/Header/Header';
 import { RandomPlanetDetails } from './components/RandomPlanetDetails/RandomPlanetDetails';
-import { ItemList } from './components/ItemList/ItemList';
-import { PersonDetails } from './components/PersonDetails/PersonDetails';
+import { PersonsPage } from './components/PersonsPage/PersonsPage';
+import { ErrorIndicator } from './components/ErrorIndicator/ErrorIndicator';
 
 export class App extends Component {
   state = {
-    selectedPerson: null,
+    hasError: false,
   };
 
-  onPersonSelected = (id) => {
-    this.setState({
-      selectedPerson: id,
-    });
+  componentDidCatch() {
+    this.setState({ hasError: true })
   }
 
   render() {
+    if (this.state.hasError) {
+      return <ErrorIndicator />
+    }
+
     return (
       <div className="container">
         <Header />
         <RandomPlanetDetails />
-        <div className="row mb2">
-          <div className="col-md-6">
-            <ItemList onItemSelected={this.onPersonSelected}/>
-          </div>
-          <div className="col-md-6">
-            <PersonDetails personId={this.state.selectedPerson}/>
-          </div>
-        </div>
+        <PersonsPage />
       </div>
     );
   }
