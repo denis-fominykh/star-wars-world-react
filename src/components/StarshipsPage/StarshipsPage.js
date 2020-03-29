@@ -33,6 +33,7 @@ export class StarshipsPage extends Component {
         <div className="col-md-6">
           <ItemList onItemSelected={this.onStarshipSelected}
                     getData={this.swapiService.getAllStarships}
+                    renderItem={item => item.name}
           />
         </div>
         <div className="col-md-6">

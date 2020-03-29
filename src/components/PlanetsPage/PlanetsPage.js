@@ -33,6 +33,7 @@ export class PlanetsPage extends Component {
         <div className="col-md-6">
           <ItemList onItemSelected={this.onPlanetSelected}
                     getData={this.swapiService.getAllPlanets}
+                    renderItem={item => item.name}
           />
         </div>
         <div className="col-md-6">
