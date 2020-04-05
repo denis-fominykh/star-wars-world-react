@@ -4,6 +4,7 @@ import { ItemList } from '../ItemList/ItemList';
 import { StarshipDetails } from '../StarshipDetails/StarshipDetails';
 import { ErrorIndicator } from '../ErrorIndicator/ErrorIndicator';
 import { SwapiService } from '../../services/swapiService';
+import { Row } from '../Row/Row';
 
 export class StarshipsPage extends Component {
   swapiService = new SwapiService();
@@ -28,18 +29,19 @@ export class StarshipsPage extends Component {
       return <ErrorIndicator />;
     }
 
+    const itemList = (
+      <ItemList onItemSelected={this.onStarshipSelected}
+                getData={this.swapiService.getAllStarships}
+                renderItem={item => item.name}
+      />
+    );
+
+    const starshipDetails = (
+      <StarshipDetails starshipId={this.state.selectedStarship}/>
+    );
+
     return (
-      <div className="row mb2">
-        <div className="col-md-6">
-          <ItemList onItemSelected={this.onStarshipSelected}
-                    getData={this.swapiService.getAllStarships}
-                    renderItem={item => item.name}
-          />
-        </div>
-        <div className="col-md-6">
-          <StarshipDetails starshipId={this.state.selectedStarship}/>
-        </div>
-      </div>
+      <Row leftBlock={itemList} rightBlock={starshipDetails} />
     )
   }
 }
