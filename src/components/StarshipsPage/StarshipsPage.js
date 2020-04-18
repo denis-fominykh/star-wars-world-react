@@ -2,21 +2,16 @@ import React, { Component } from 'react';
 
 import { ItemList } from '../ItemList/ItemList';
 import { StarshipDetails } from '../StarshipDetails/StarshipDetails';
-import { ErrorIndicator } from '../ErrorIndicator/ErrorIndicator';
 import { SwapiService } from '../../services/swapiService';
 import { Row } from '../Row/Row';
+import { ErrorBoundary } from '../ErrorBoundary/ErrorBoundary';
 
 export class StarshipsPage extends Component {
   swapiService = new SwapiService();
 
   state = {
     selectedStarship: null,
-    hasError: false,
   };
-
-  componentDidCatch() {
-    this.setState({ hasError: true });
-  }
 
   onStarshipSelected = (id) => {
     this.setState({
@@ -25,19 +20,18 @@ export class StarshipsPage extends Component {
   }
 
   render() {
-    if (this.state.hasError) {
-      return <ErrorIndicator />;
-    }
-
     const itemList = (
       <ItemList onItemSelected={this.onStarshipSelected}
                 getData={this.swapiService.getAllStarships}
-                renderItem={item => item.name}
-      />
+      >
+        {item => item.name}
+      </ItemList>
     );
 
     const starshipDetails = (
-      <StarshipDetails starshipId={this.state.selectedStarship}/>
+      <ErrorBoundary>
+        <StarshipDetails starshipId={this.state.selectedStarship} />
+      </ErrorBoundary>
     );
 
     return (

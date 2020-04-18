@@ -7,7 +7,7 @@ export const StarshipView = ({ starship }) => {
     <React.Fragment>
       <img className="person-image"
              src={`https://starwars-visualguide.com/assets/img/starships/${id}.jpg`}
-             alt="planet"
+             alt="starship"
         />
       <div className="card-body">
         <h4>{name}</h4>
