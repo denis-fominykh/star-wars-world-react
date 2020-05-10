@@ -8,7 +8,9 @@ import { SwapiServiceProvider } from './components/SwapiServiceContext/SwapiServ
 import { Header } from './components/Header/Header';
 import { RandomPlanetDetails } from './components/RandomPlanetDetails/RandomPlanetDetails';
 import { PersonList, PlanetList, StarshipList } from './components/SWComponents/ItemLists';
-import { PersonDetails, PlanetDetails, StarshipDetails } from './components/SWComponents/Details';
+import PersonDetails from './components/SWComponents/PersonDetails';
+import PlanetDetails from './components/SWComponents/PlanetDetails';
+import StarshipDetails from './components/SWComponents/StarshipDetails';
 import { ErrorIndicator } from './components/ErrorIndicator/ErrorIndicator';
 
 export class App extends Component {
