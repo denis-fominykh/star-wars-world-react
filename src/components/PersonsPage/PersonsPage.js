@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { ItemList } from '../ItemList/ItemList';
-import { PersonDetails } from '../PersonDetails/PersonDetails';
+import { ItemDetails } from '../ItemDetails/ItemDetails';
 import { SwapiService } from '../../services/swapiService';
 import { Row } from '../Row/Row';
 import { ErrorBoundary } from '../ErrorBoundary/ErrorBoundary';
@@ -30,7 +30,7 @@ export class PersonsPage extends Component {
 
     const personDetails = (
       <ErrorBoundary>
-        <PersonDetails personId={this.state.selectedPerson} />
+        <ItemDetails itemId={this.state.selectedPerson} />
       </ErrorBoundary>
     );
 

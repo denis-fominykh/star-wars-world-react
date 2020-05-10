@@ -1,59 +1,27 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import './ItemList.scss';
-import { Spinner } from '../Spinner/Spinner';
 
-export class ItemList extends Component {
-  state = {
-    itemList: null,
-    error: null,
-  };
+export const ItemList = (props) => {
 
-  componentDidMount() {
-    const { getData } = this.props;
+  const { data, onItemSelected, children: renderLabel } = props;
 
-    getData()
-      .then(this.onItemListLoaded)
-      .catch(this.onError);
-  }
-
-  onItemListLoaded = itemList => {
-    this.setState({ itemList });
-  }
-
-  onError = error => {
-    this.setState({ error });
-  }
-
-  renderItems(arr) {
-    return arr.map(item => {
-      const { id } = item;
-      const label = this.props.children(item);
-
-      return (
-        <li className="list-group-item"
-            key={id}
-            onClick={() => this.props.onItemSelected(id)}
-        >
-          {label}
-        </li>
-      );
-    })
-  }
-
-  render() {
-    const { itemList } = this.state;
-
-    if (!itemList) {
-      return <Spinner />;
-    }
-
-    const items = this.renderItems(itemList);
+  const items = data.map((item) => {
+    const { id } = item;
+    const label = renderLabel(item);
 
     return (
-      <ul className="item-list list-group">
-        {items}
-      </ul>
+      <li className="list-group-item"
+          key={id}
+          onClick={() => onItemSelected(id)}>
+        {label}
+      </li>
     );
-  }
-}
+  });
+
+  return (
+    <ul className="item-list list-group">
+      {items}
+    </ul>
+  );
+};
