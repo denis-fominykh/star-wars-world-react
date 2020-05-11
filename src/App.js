@@ -7,6 +7,7 @@ import { ErrorBoundary } from './components/ErrorBoundary/ErrorBoundary';
 import { SwapiServiceProvider } from './components/SwapiServiceContext/SwapiServiceContext';
 import { Header } from './components/Header/Header';
 import { RandomPlanetDetails } from './components/RandomPlanetDetails/RandomPlanetDetails';
+import { Row } from './components/Row/Row';
 import { PersonList, PlanetList, StarshipList } from './components/SWComponents/ItemLists';
 import PersonDetails from './components/SWComponents/PersonDetails';
 import PlanetDetails from './components/SWComponents/PlanetDetails';
@@ -17,21 +18,12 @@ export class App extends Component {
   swapiService = new SwapiService();
 
   state = {
-    showRandomPlanet: true,
     hasError: false,
   };
 
   componentDidCatch() {
-    this.setState({ hasError: true })
+    this.setState({ hasError: true });
   }
-
-  toggleRandomPlanet = () => {
-    this.setState((state) => {
-      return {
-        showRandomPlanet: !state.showRandomPlanet
-      }
-    });
-  };
 
   render() {
     if (this.state.hasError) {
@@ -44,12 +36,18 @@ export class App extends Component {
           <div className="container">
             <Header />
             <RandomPlanetDetails />
-            <PersonDetails itemId={4} />
-            <PlanetDetails itemId={4} />
-            <StarshipDetails itemId={9} />
-            <PersonList />
-            <PlanetList />
-            <StarshipList />
+            <Row
+              leftBlock={<PersonList />}
+              rightBlock={<PersonDetails itemId={4} />}
+            />
+            <Row
+              leftBlock={<PlanetList />}
+              rightBlock={<PlanetDetails itemId={4} />}
+            />
+            <Row
+              leftBlock={<StarshipList />}
+              rightBlock={<StarshipDetails itemId={9} />}
+            />
           </div>
         </SwapiServiceProvider>
       </ErrorBoundary>
