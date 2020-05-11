@@ -7,11 +7,9 @@ import { ErrorBoundary } from './components/ErrorBoundary/ErrorBoundary';
 import { SwapiServiceProvider } from './components/SwapiServiceContext/SwapiServiceContext';
 import { Header } from './components/Header/Header';
 import { RandomPlanetDetails } from './components/RandomPlanetDetails/RandomPlanetDetails';
-import { Row } from './components/Row/Row';
-import { PersonList, PlanetList, StarshipList } from './components/SWComponents/ItemLists';
-import PersonDetails from './components/SWComponents/PersonDetails';
-import PlanetDetails from './components/SWComponents/PlanetDetails';
-import StarshipDetails from './components/SWComponents/StarshipDetails';
+import { PersonsPage } from './components/pages/PersonsPage';
+import { PlanetsPage } from './components/pages/PlanetsPage';
+import { StarshipsPage } from './components/pages/StarshipsPage';
 import { ErrorIndicator } from './components/ErrorIndicator/ErrorIndicator';
 
 export class App extends Component {
@@ -36,18 +34,9 @@ export class App extends Component {
           <div className="container">
             <Header />
             <RandomPlanetDetails />
-            <Row
-              leftBlock={<PersonList />}
-              rightBlock={<PersonDetails itemId={4} />}
-            />
-            <Row
-              leftBlock={<PlanetList />}
-              rightBlock={<PlanetDetails itemId={4} />}
-            />
-            <Row
-              leftBlock={<StarshipList />}
-              rightBlock={<StarshipDetails itemId={9} />}
-            />
+            <PersonsPage />
+            <PlanetsPage />
+            <StarshipsPage />
           </div>
         </SwapiServiceProvider>
       </ErrorBoundary>
