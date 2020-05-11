@@ -1,30 +1,49 @@
 import React, { Component } from 'react';
 import { Spinner } from '../Spinner/Spinner';
+import { ErrorIndicator } from '../ErrorIndicator/ErrorIndicator';
 
 export const withData = (View) => {
   return class extends Component {
-
     state = {
-      data: null
+      data: null,
+      loading: true,
+      error: null,
     };
 
     componentDidMount() {
       this.props.getData()
-        .then((data) => {
-          this.setState({
-            data
-          });
-        });
+        .then(this.onDataLoaded)
+        .catch(this.onError);
+    }
+
+    onDataLoaded = data => {
+      this.setState({
+        data,
+        loading: false,
+      });
+    }
+
+    onError = error => {
+      this.setState({
+        error,
+        loading: false,
+      });
     }
 
     render() {
-      const { data } = this.state;
+      const { data, loading, error } = this.state;
 
-      if (!data) {
-        return <Spinner />;
-      }
+      const errorIndicator = error ? <ErrorIndicator /> : null;
+      const spinner = loading ? <Spinner /> : null;
+      const content = !(error || loading) ? <View {...this.props} data={data} /> : null;
 
-      return <View {...this.props} data={data} />;
+      return (
+        <React.Fragment>
+          {errorIndicator}
+          {spinner}
+          {content}
+        </React.Fragment>
+      );
     }
   };
 };
