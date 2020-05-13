@@ -33,7 +33,7 @@ export class App extends Component {
         <SwapiServiceProvider value={this.swapiService}>
           <div className="container">
             <Header />
-            <RandomPlanetDetails />
+            <RandomPlanetDetails updateInterval={7000} />
             <PersonsPage />
             <PlanetsPage />
             <StarshipsPage />
