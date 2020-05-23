@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 
 import './ItemDetails.scss';
-import { SwapiService } from '../../services/swapiService';
 import { Spinner } from '../Spinner/Spinner';
 
 export class ItemDetails extends Component {
-  swapiService = new SwapiService();
-
   state = {
     item: null,
     image: null,
