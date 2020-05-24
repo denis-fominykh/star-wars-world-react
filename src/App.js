@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import './App.scss';
 
@@ -31,13 +32,25 @@ export class App extends Component {
     return (
       <ErrorBoundary>
         <SwapiServiceProvider value={this.swapiService}>
-          <div className="container">
-            <Header />
-            <RandomPlanetDetails updateInterval={7000} />
-            <PersonsPage />
-            <PlanetsPage />
-            <StarshipsPage />
-          </div>
+          <Router>
+            <div className="container">
+              <Header />
+              <RandomPlanetDetails updateInterval={7000} />
+              <Route path="/"
+                     render={() => (
+                       <div>
+                         <PersonsPage />
+                         <PlanetsPage />
+                         <StarshipsPage />
+                       </div>
+                     )}
+                     exact={true}
+              />
+              <Route path="/people" component={PersonsPage} />
+              <Route path="/planets" component={PlanetsPage} />
+              <Route path="/starships" component={StarshipsPage} />
+            </div>
+          </Router>
         </SwapiServiceProvider>
       </ErrorBoundary>
     );
