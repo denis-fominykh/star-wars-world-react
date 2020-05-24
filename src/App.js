@@ -12,6 +12,9 @@ import { PersonsPage } from './components/pages/PersonsPage';
 import { PlanetsPage } from './components/pages/PlanetsPage';
 import { StarshipsPage } from './components/pages/StarshipsPage';
 import { ErrorIndicator } from './components/ErrorIndicator/ErrorIndicator';
+import PersonDetails from './components/SWComponents/PersonDetails';
+import PlanetDetails from './components/SWComponents/PlanetDetails';
+import StarshipDetails from './components/SWComponents/StarshipDetails';
 
 export class App extends Component {
   swapiService = new SwapiService();
@@ -44,11 +47,29 @@ export class App extends Component {
                          <StarshipsPage />
                        </div>
                      )}
-                     exact={true}
+                     exact
               />
-              <Route path="/people" component={PersonsPage} />
-              <Route path="/planets" component={PlanetsPage} />
-              <Route path="/starships" component={StarshipsPage} />
+              <Route path="/people" component={PersonsPage} exact />
+              <Route path="/people/:id"
+                     render={({match}) => {
+                       const { id } = match.params;
+                       return <PersonDetails itemId={id} />
+                     }}
+              />
+              <Route path="/planets" component={PlanetsPage} exact />
+              <Route path="/planets/:id"
+                     render={({match}) => {
+                       const { id } = match.params;
+                       return <PlanetDetails itemId={id} />
+                     }}
+              />
+              <Route path="/starships" component={StarshipsPage} exact />
+              <Route path="/starships/:id"
+                     render={({match}) => {
+                       const { id } = match.params;
+                       return <StarshipDetails itemId={id} />
+                     }}
+              />
             </div>
           </Router>
         </SwapiServiceProvider>
