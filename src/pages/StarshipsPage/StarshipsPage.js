@@ -13,6 +13,6 @@ const StarshipsPage = ({ history, match }) => {
       rightBlock={<StarshipDetails itemId={id} />}
     />
   );
-}
+};
 
 export default withRouter(StarshipsPage);

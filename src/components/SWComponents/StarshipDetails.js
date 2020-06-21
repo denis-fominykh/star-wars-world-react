@@ -5,7 +5,7 @@ import { withSwapiService } from '../HOC/WithSwapiService';
 
 const StarshipDetails = (props) => {
   return (
-    <ItemDetails {...props} >
+    <ItemDetails {...props}>
       <Record field="model" label="Model" />
       <Record field="length" label="Length" />
       <Record field="costInCredits" label="Cost" />
@@ -16,8 +16,8 @@ const StarshipDetails = (props) => {
 const mapMethodsToProps = (swapiService) => {
   return {
     getData: swapiService.getStarship,
-    getImageUrl: swapiService.getStarshipImage
-  }
+    getImageUrl: swapiService.getStarshipImage,
+  };
 };
 
 export default withSwapiService(mapMethodsToProps)(StarshipDetails);

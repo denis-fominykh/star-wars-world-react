@@ -27,7 +27,7 @@ export class App extends Component {
 
   render() {
     if (this.state.hasError) {
-      return <ErrorIndicator />
+      return <ErrorIndicator />;
     }
 
     return (
@@ -37,10 +37,7 @@ export class App extends Component {
             <div className="container">
               <Header />
               <RandomPlanetDetails updateInterval={7000} />
-              <Route path="/"
-                     render={() => <MainPage />}
-                     exact
-              />
+              <Route path="/" render={() => <MainPage />} exact />
               <Route path="/people/" component={() => <h2>People</h2>} />
               <Route path="/people/:id?" component={PersonsPage} exact />
               <Route path="/planets/" component={() => <h2>Planets</h2>} />

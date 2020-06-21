@@ -1,19 +1,14 @@
 import React from 'react';
 
 export const RandomPlanetView = ({ planet }) => {
-  const {
-    id,
-    name,
-    population,
-    rotationPeriod,
-    diameter
-  } = planet;
+  const { id, name, population, rotationPeriod, diameter } = planet;
 
   return (
     <React.Fragment>
-      <img className="planet-image"
-           src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
-           alt="planet"
+      <img
+        className="planet-image"
+        src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
+        alt="planet"
       />
       <div>
         <h4>{name}</h4>
@@ -33,5 +28,5 @@ export const RandomPlanetView = ({ planet }) => {
         </ul>
       </div>
     </React.Fragment>
-  )
-}
+  );
+};

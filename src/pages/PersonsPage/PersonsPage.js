@@ -4,7 +4,7 @@ import { Row } from '../../components/Row/Row';
 import { PersonList } from '../../components/SWComponents/ItemLists';
 import PersonDetails from '../../components/SWComponents/PersonDetails';
 
-const PersonsPage = ({ history, match}) => {
+const PersonsPage = ({ history, match }) => {
   const { id } = match.params;
 
   return (
@@ -12,7 +12,7 @@ const PersonsPage = ({ history, match}) => {
       leftBlock={<PersonList onItemSelected={(id) => history.push(id)} />}
       rightBlock={<PersonDetails itemId={id} />}
     />
-  )
-}
+  );
+};
 
 export default withRouter(PersonsPage);

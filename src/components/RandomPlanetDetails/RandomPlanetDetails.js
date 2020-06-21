@@ -10,7 +10,7 @@ import { ErrorIndicator } from '../ErrorIndicator/ErrorIndicator';
 export class RandomPlanetDetails extends Component {
   static defaultProps = {
     updateInterval: 10000,
-  }
+  };
 
   static propsType = {
     updateInterval: (props, propName, componentName) => {
@@ -21,8 +21,8 @@ export class RandomPlanetDetails extends Component {
       }
 
       return new TypeError(`${componentName}: ${propName} must be number`);
-    }
-  }
+    },
+  };
 
   swapiService = new SwapiService();
 
@@ -42,19 +42,19 @@ export class RandomPlanetDetails extends Component {
     clearInterval(this.interval);
   }
 
-  onPlanetLoaded = planet => {
+  onPlanetLoaded = (planet) => {
     this.setState({
       planet,
       loading: false,
     });
-  }
+  };
 
-  onError = error => {
+  onError = (error) => {
     this.setState({
       loading: false,
       error: true,
-    })
-  }
+    });
+  };
 
   updatePlanet = () => {
     const id = Math.floor(Math.random() * 17) + 2;
@@ -62,14 +62,16 @@ export class RandomPlanetDetails extends Component {
       .getPlanet(id)
       .then(this.onPlanetLoaded)
       .catch(this.onError);
-  }
+  };
 
   render() {
     const { planet, loading, error } = this.state;
 
     const errorIndicator = error ? <ErrorIndicator /> : null;
     const spinner = loading ? <Spinner /> : null;
-    const content = !(loading || error) ? <RandomPlanetView planet={planet}/> : null;
+    const content = !(loading || error) ? (
+      <RandomPlanetView planet={planet} />
+    ) : null;
 
     return (
       <div className="random-planet jumbotron rounded">

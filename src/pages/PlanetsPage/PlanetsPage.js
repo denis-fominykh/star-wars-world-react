@@ -12,7 +12,7 @@ const PlanetsPage = ({ history, match }) => {
       leftBlock={<PlanetList onItemSelected={(id) => history.push(id)} />}
       rightBlock={<PlanetDetails itemId={id} />}
     />
-  )
-}
+  );
+};
 
 export default withRouter(PlanetsPage);

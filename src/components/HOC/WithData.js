@@ -11,31 +11,31 @@ export const withData = (View) => {
     };
 
     componentDidMount() {
-      this.props.getData()
-        .then(this.onDataLoaded)
-        .catch(this.onError);
+      this.props.getData().then(this.onDataLoaded).catch(this.onError);
     }
 
-    onDataLoaded = data => {
+    onDataLoaded = (data) => {
       this.setState({
         data,
         loading: false,
       });
-    }
+    };
 
-    onError = error => {
+    onError = (error) => {
       this.setState({
         error,
         loading: false,
       });
-    }
+    };
 
     render() {
       const { data, loading, error } = this.state;
 
       const errorIndicator = error ? <ErrorIndicator /> : null;
       const spinner = loading ? <Spinner /> : null;
-      const content = !(error || loading) ? <View {...this.props} data={data} /> : null;
+      const content = !(error || loading) ? (
+        <View {...this.props} data={data} />
+      ) : null;
 
       return (
         <React.Fragment>

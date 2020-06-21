@@ -16,5 +16,5 @@ export const Spinner = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

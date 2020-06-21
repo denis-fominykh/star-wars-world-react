@@ -22,7 +22,7 @@ export class ItemDetails extends Component {
     }
   }
 
-  onItemLoaded = item => {
+  onItemLoaded = (item) => {
     const { getImageUrl } = this.props;
 
     this.setState({
@@ -30,15 +30,15 @@ export class ItemDetails extends Component {
       image: getImageUrl(item),
       loaded: false,
     });
-  }
+  };
 
-  onError = error => {
+  onError = (error) => {
     this.setState({ error });
-  }
+  };
 
   onToggleSpinner = () => {
     this.setState({ loaded: true });
-  }
+  };
 
   updateItem() {
     const { itemId, getData } = this.props;
@@ -46,27 +46,23 @@ export class ItemDetails extends Component {
       return;
     }
 
-    getData(itemId)
-      .then(this.onItemLoaded)
-      .catch(this.onError);
+    getData(itemId).then(this.onItemLoaded).catch(this.onError);
   }
 
   render() {
     const { item, image, loaded, error } = this.state;
 
     const emptyItem = !item ? <span>Select a person from a list</span> : null;
-    const spinner = (loaded && item) ? <Spinner /> : null;
+    const spinner = loaded && item ? <Spinner /> : null;
     const content = !(loaded || error) ? (
       <React.Fragment>
         <img className="item-image" src={image} alt="item" />
         <div className="card-body">
           <h4>{item.name}</h4>
           <ul className="list-group list-group-flush">
-            {
-              React.Children.map(this.props.children, (child) => {
-                return React.cloneElement(child, { item });
-              })
-            }
+            {React.Children.map(this.props.children, (child) => {
+              return React.cloneElement(child, { item });
+            })}
           </ul>
         </div>
       </React.Fragment>
@@ -78,6 +74,6 @@ export class ItemDetails extends Component {
         {spinner}
         {content}
       </div>
-    )
+    );
   }
 }
