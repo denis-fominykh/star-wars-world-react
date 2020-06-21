@@ -1,8 +1,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Row } from '../Row/Row';
-import { StarshipList } from '../SWComponents/ItemLists';
-import StarshipDetails from '../SWComponents/StarshipDetails';
+import { Row } from '../../components/Row/Row';
+import { StarshipList } from '../../components/SWComponents/ItemLists';
+import StarshipDetails from '../../components/SWComponents/StarshipDetails';
 
 const StarshipsPage = ({ history, match }) => {
   const { id } = match.params;

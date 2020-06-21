@@ -1,8 +1,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Row } from '../Row/Row';
-import { PlanetList } from '../SWComponents/ItemLists';
-import PlanetDetails from '../SWComponents/PlanetDetails';
+import { Row } from '../../components/Row/Row';
+import { PlanetList } from '../../components/SWComponents/ItemLists';
+import PlanetDetails from '../../components/SWComponents/PlanetDetails';
 
 const PlanetsPage = ({ history, match }) => {
   const { id } = match.params;

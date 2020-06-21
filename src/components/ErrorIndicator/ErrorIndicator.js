@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './ErrorIndicator.scss';
-import deathStarIcon from './death-star.png';
+import deathStarIcon from '../../img/death-star.png';
 
 export const ErrorIndicator = () => {
   return (

@@ -8,10 +8,10 @@ import { ErrorBoundary } from './components/ErrorBoundary/ErrorBoundary';
 import { SwapiServiceProvider } from './components/SwapiServiceContext/SwapiServiceContext';
 import { Header } from './components/Header/Header';
 import { RandomPlanetDetails } from './components/RandomPlanetDetails/RandomPlanetDetails';
-import { MainPage } from './components/pages/MainPage';
-import PersonsPage from './components/pages/PersonsPage';
-import PlanetsPage from './components/pages/PlanetsPage';
-import StarshipsPage from './components/pages/StarshipsPage';
+import MainPage from './pages/MainPage';
+import PersonsPage from './pages/PersonsPage';
+import PlanetsPage from './pages/PlanetsPage';
+import StarshipsPage from './pages/StarshipsPage';
 import { ErrorIndicator } from './components/ErrorIndicator/ErrorIndicator';
 
 export class App extends Component {

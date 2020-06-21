@@ -1,9 +1,9 @@
 import React from 'react';
 
 import './MainPage.scss';
-import swPosters from './sw-4-6-posters.png';
+import swPosters from '../../img/sw-4-6-posters.png';
 
-export const MainPage = () => {
+const MainPage = () => {
 	return (
 		<div className="main-page">
 			<h2 className="heading-text">Welcome to Star Wars World!</h2>
@@ -11,3 +11,5 @@ export const MainPage = () => {
 		</div>
 	);
 }
+
+export default MainPage;

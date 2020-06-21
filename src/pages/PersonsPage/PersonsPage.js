@@ -1,8 +1,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Row } from '../Row/Row';
-import { PersonList } from '../SWComponents/ItemLists';
-import PersonDetails from '../SWComponents/PersonDetails';
+import { Row } from '../../components/Row/Row';
+import { PersonList } from '../../components/SWComponents/ItemLists';
+import PersonDetails from '../../components/SWComponents/PersonDetails';
 
 const PersonsPage = ({ history, match}) => {
   const { id } = match.params;
